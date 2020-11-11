@@ -28,7 +28,7 @@
     <input type="submit" value="Update">
 </form>
 <p>
-    <a href="/products">Back </a>
+    <a href="/product">Back </a>
 </p>
 </body>
 </html>

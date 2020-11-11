@@ -22,10 +22,10 @@ public class ProductServlet extends HttpServlet {
             action = " ";
         }
         switch (action) {
-            case "create":
+            case "add":
                 addForm(request, response);
                 break;
-            case "update":
+            case "edit":
                 updateForm(request, response);
                 break;
             default:
@@ -141,7 +141,7 @@ public class ProductServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         service.delete(id);
         try {
-            response.sendRedirect("/products");
+            response.sendRedirect("/product");
         } catch (IOException e) {
             e.printStackTrace();
         }

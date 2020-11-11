@@ -14,7 +14,7 @@
 
 <c:out value="${message}"></c:out>
 <h2>Add new product</h2>
-<form method="post">
+<form method="post" >
     Name <input type="text" name="name" value=""><br>
     Price <input type="number" name="price" value=""><br>
     Quantity <input type="text" name="quantity" value=""><br>
@@ -28,7 +28,7 @@
     <input type="submit" value="Submit">
     </form>
 <p>
-    <a href="/products">Back </a>
+    <a href="/product">Back </a>
 </p>
 </body>
 </html>
