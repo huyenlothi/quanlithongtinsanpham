@@ -68,7 +68,7 @@
                 <td> <c:out value="${product.getQuantity()}"></c:out></td>
                 <td> <c:out value="${product.getColor()}"></c:out></td>
                 <td> <c:out value="${product.getCateName()}"></c:out></td>
-                <td><a href="/product?action=update&id=${product.getProId()}">Edit</a>
+                <td><a href="/product?action=edit&id=${product.getProId()}">Edit</a>
                     <a href="/product?action=delete&id=${product.getProId()}">Delete</a></td>
             </tr>
         </c:forEach>

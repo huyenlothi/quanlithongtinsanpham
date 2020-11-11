@@ -8,13 +8,25 @@ import java.util.List;
 
 public class ProductService  implements IProductService{
     Connection connection = DBConnection.getConnection();
+    private static String ADD = "insert into product(name, price, quantity, color, description, cateId) values (?,?,?,?,?,?)";
     private static String SEARCH ="select  proId, name, price, quantity, color, cateName from product join category c on c.cateId = product.cateId where name like =?";
     private static String DELETE = "delete from product where proId=?";
     private static String EDIT = "update product set name =?,price=?,quantity=?,color=?,description=?,cateId=? where proId=? ";
     private static String FINDALL = "select  proId, name, price, quantity, color, cateName from product join category c on c.cateId = product.cateId;";
     @Override
     public void add(Product product) {
-
+        try {
+            PreparedStatement ps = connection.prepareStatement(ADD);
+            ps.setString(1, product.getName());
+            ps.setDouble(2,product.getPrice());
+            ps.setInt(3,product.getQuantity());
+            ps.setString(4, product.getColor());
+            ps.setString(5, product.getDescription());
+            ps.setInt(6,product.getCategory());
+            ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
@@ -77,11 +89,10 @@ public class ProductService  implements IProductService{
     @Override
     public Product findById(int id) {
         Product product= null;
-        String sql = "select name,price,quantity,color,description,cateid from products where id=?";
+        String sql = "select name,price,quantity,color,description,cateid from product where proId=?";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1,id);
-
             ResultSet rs= ps.executeQuery();
             while (rs.next()){
                 String name = rs.getString("name");
