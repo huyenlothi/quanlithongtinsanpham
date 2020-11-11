@@ -110,6 +110,7 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void showAddForm(HttpServletRequest request, HttpServletResponse response) {
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/view/add.jsp");
         try {
             dispatcher.forward(request, response);
@@ -125,7 +126,7 @@ public class ProductServlet extends HttpServlet {
         Product product = service.findById(id);
         if (product != null) {
             request.setAttribute("product", product);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/view/update.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/view/edit.jsp");
             try {
                 dispatcher.forward(request, response);
             } catch (ServletException e) {

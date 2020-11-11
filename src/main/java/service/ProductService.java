@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ProductService  implements IProductService{
     Connection connection = DBConnection.getConnection();
-    private static String SEARCH ="select  proId, name, price, quantity, color, cateName from product join category c on c.cateId = product.cateId where name like '%_
+    private static String SEARCH ="select  proId, name, price, quantity, color, cateName from product join category c on c.cateId = product.cateId where name like =?";
     private static String DELETE = "delete from product where proId=?";
     private static String EDIT = "update product set name =?,price=?,quantity=?,color=?,description=?,cateId=? where proId=? ";
     private static String FINDALL = "select  proId, name, price, quantity, color, cateName from product join category c on c.cateId = product.cateId;";

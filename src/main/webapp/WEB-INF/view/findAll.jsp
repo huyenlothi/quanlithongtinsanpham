@@ -46,7 +46,7 @@
 </head>
 <body>
 <form action="">
-    <input type="submit" value="+ Add new product" src="/product?action=add"><br/>
+    <a href="/product?action=add">Add new product</a><br/>
     <input type="text"  name="search">
     <input type="submit" src="/product?action=search" value="Search">
     <table>
@@ -68,8 +68,8 @@
                 <td> <c:out value="${product.getQuantity()}"></c:out></td>
                 <td> <c:out value="${product.getColor()}"></c:out></td>
                 <td> <c:out value="${product.getCateName()}"></c:out></td>
-                <td><a href="/products?action=update&id=${product.getProId()}">Edit</a>
-                    <a href="/products?action=delete&id=${product.getProId()}">Delete</a></td>
+                <td><a href="/product?action=update&id=${product.getProId()}">Edit</a>
+                    <a href="/product?action=delete&id=${product.getProId()}">Delete</a></td>
             </tr>
         </c:forEach>
     </table>
