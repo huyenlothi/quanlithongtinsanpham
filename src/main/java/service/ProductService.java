@@ -9,7 +9,7 @@ import java.util.List;
 public class ProductService  implements IProductService{
     Connection connection = DBConnection.getConnection();
     private static String ADD = "insert into product(name, price, quantity, color, description, cateId) values (?,?,?,?,?,?)";
-    private static String SEARCH ="select  proId, name, price, quantity, color, cateName from product join category c on c.cateId = product.cateId where name like =?";
+    private static String SEARCH ="select  proId, name, price, quantity, color, cateName from product join category c on c.cateId = product.cateId where name like ?";
     private static String DELETE = "delete from product where proId=?";
     private static String EDIT = "update product set name =?,price=?,quantity=?,color=?,description=?,cateId=? where proId=? ";
     private static String FINDALL = "select  proId, name, price, quantity, color, cateName from product join category c on c.cateId = product.cateId;";
@@ -52,9 +52,27 @@ public class ProductService  implements IProductService{
     }
 
     @Override
-    public List<Product> findByName(String name) {
+    public List<Product> findByName(String names) {
+        List<Product> products = new ArrayList<>();
+        try {
+            PreparedStatement ps = connection.prepareStatement(SEARCH);
+            ps.setString(1,names);
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt("proId");
+                String name = resultSet.getString("name");
+                double price = resultSet.getDouble("price");
+                int quantity = resultSet.getInt("quantity");
+                String color = resultSet.getString("color");
+                String cateName =resultSet.getString("cateName");
+                Product product = new Product(id,name,price,quantity,color,cateName);
+                products.add(product);
+            }
 
-        return null;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return products;
     }
 
     @Override

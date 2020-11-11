@@ -13,14 +13,10 @@
     <style>
         table{
             width: 100%;
-
             border-collapse: collapse;
-
-
         }
         form{
             width: 60%;
-            box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
             margin: 0 auto;
             padding-bottom: 2px;
             padding-top: 20px;
@@ -47,8 +43,11 @@
 <body>
 <form action="">
     <a href="/product?action=add">Add new product</a><br/>
+    <form action="/product?action=search">
+        <input type="text" name="action" value="search" hidden>
     <input type="text"  name="search">
-    <input type="submit" src="/product?action=search" value="Search">
+    <input type="submit" value="Search">
+    </form>
     <table>
         <caption>Danh sách sản phẩm</caption>
         <tr>

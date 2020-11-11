@@ -45,7 +45,7 @@ public class ProductServlet extends HttpServlet {
         Product product = new Product(id, name, price,quantity,color,description,cateId);
         service.edit(id, product);
         request.setAttribute("message", "sua thanh cong");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/view/update.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/view/edit.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -99,6 +99,9 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void searchProduct(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("search");
+        List<Product> product = service.findByName("%"+ name+ "_%");
+        request.setAttribute("product",product);
         RequestDispatcher dispatcher= request.getRequestDispatcher("WEB-INF/view/search.jsp");
         try {
             dispatcher.forward(request,response);
@@ -128,7 +131,7 @@ public class ProductServlet extends HttpServlet {
             request.setAttribute("product", product);
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/view/edit.jsp");
             try {
-                dispatcher.forward(request, response);
+                dispatcher.forward(request,response);
             } catch (ServletException e) {
                 e.printStackTrace();
             } catch (IOException e) {
